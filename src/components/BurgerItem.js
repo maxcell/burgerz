@@ -8,7 +8,7 @@ const BurgerItem = (props) => {
       </div>
       <div className="BurgerBottomBun">
         <button onClick={(e) => props.handleClick(props.burger)}>Show</button>
-        <button onClick={console.log}>Delete</button>
+        <button onClick={(e) => props.handleDelete(props.burger)}>Delete</button>
       </div>
     </div>
   )

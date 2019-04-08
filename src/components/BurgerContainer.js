@@ -7,7 +7,6 @@ export default class BurgerContainer extends Component {
   // For step 2
   // We need state to keep track of the information
   state = {
-    burgers: [],
     filteredBurgers: []
   }
 
@@ -17,23 +16,13 @@ export default class BurgerContainer extends Component {
   //  - The data we're sending to BurgerFilter
   //  - The data we're sending to BurgerList
 
-  componentDidMount() {
-    fetch("http://localhost:3001/burgers")
-    .then(res => res.json())
-    .then(burgersJSON => {
-      this.setState({
-        burgers: burgersJSON,
-        filteredBurgers: burgersJSON
-      })
-    })
-  }
 
   handleChange = (e) => {
     let filteredBurgers
     if(e.target.value === 'All'){
-      filteredBurgers = this.state.burgers
+      filteredBurgers = this.props.burgers
     } else {
-      filteredBurgers = this.state.burgers.filter(burger => burger.category === e.target.value)
+      filteredBurgers = this.props.burgers.filter(burger => burger.category === e.target.value)
     }
     this.setState({
       filteredBurgers
@@ -60,7 +49,7 @@ export default class BurgerContainer extends Component {
     return (
       <div className="BurgerContainer">
         <BurgerFilter handleChange={this.handleChange}/>
-        <BurgerList handleClick={this.props.handleClick} burgers={this.state.filteredBurgers} />
+        <BurgerList handleDelete={this.props.handleDelete} handleClick={this.props.handleClick} burgers={this.state.filteredBurgers.length > 0 ? this.state.filteredBurgers : this.props.burgers} />
       </div>
     )
   }

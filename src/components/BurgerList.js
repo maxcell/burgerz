@@ -4,7 +4,7 @@ import BurgerItem from './BurgerItem'
 const BurgerList = (props) => {
 
   const burgerArray = props.burgers.map(burger =>{
-    return <BurgerItem handleClick={props.handleClick} key={burger.id} burger={burger}/>
+    return <BurgerItem handleDelete={props.handleDelete} handleClick={props.handleClick} key={burger.id} burger={burger}/>
   })
 
   return (
